@@ -1,0 +1,91 @@
+<html>
+
+<!-- Mirrored from www.collinsvillepost365.com/Slideshow.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Feb 2026 15:14:41 GMT -->
+<head>
+<title>Post 365 Monument Slide Show</title>
+<script type="text/javascript">
+var i = 0, imgsrc = new Array(), preload = new Array();
+imgsrc[0]="Memorial/Carter/Copy%20of%20600_7016.jpg";
+imgsrc[1]="Memorial/Carter/Copy%20of%20600_7018.jpg";
+imgsrc[2]="Memorial/Carter/Copy%20of%20600_7022.jpg";
+imgsrc[3]="Memorial/Carter/Copy%20of%20600_7031.jpg";
+imgsrc[4]="Memorial/Carter/Copy%20of%20600_7033.jpg";
+imgsrc[5] = "Memorial/Carter/Copy%20of%20600_7039.jpg";
+imgsrc[6] = "Memorial/Carter/Copy%20of%20600_7047.jpg";
+imgsrc[7] = "Memorial/Carter/Copy%20of%20600_7050.jpg";
+imgsrc[8] = "Memorial/Carter/Copy%20of%20600_7059.jpg";
+imgsrc[9] = "Memorial/Carter/Copy%20of%20600_7060.jpg";
+imgsrc[10] = "Memorial/Carter/Copy%20of%20600_7063.jpg";
+imgsrc[11] = "Memorial/Carter/Copy%20of%20600_7065.jpg";
+imgsrc[12] = "Memorial/Carter/Copy%20of%20600_7072.jpg";
+imgsrc[13] = "Memorial/Carter/Copy%20of%20600_7077.jpg";
+imgsrc[14] = "Memorial/Carter/Copy%20of%20600_7088.jpg";
+imgsrc[15] = "Memorial/Carter/Copy%20of%20600_7089.jpg";
+imgsrc[16] = "Memorial/Carter/Copy%20of%20600_7131.jpg";
+imgsrc[17] = "Memorial/Carter/Copy%20of%20600_7145.jpg";
+imgsrc[18] = "Memorial/Carter/Copy%20of%20600_7155.jpg";
+imgsrc[19] = "Memorial/Carter/Copy%20of%20600_7177.jpg";
+for (var j=0;j<imgsrc.length;j++)
+{
+preload[j] = new Image;
+preload[j].src = imgsrc[j];
+}
+function mode(param)
+{
+smode=param;
+}
+function startSlideshow()
+{
+if(smode=="play")
+{
+document.getElementById("play").disabled="disabled";
+document.getElementById("pause").disabled="";
+document.getElementById("stop").disabled="";
+document.getElementById("slideshow").src=imgsrc[i];
+i++;
+setTimeout("startSlideshow()",5000);
+}
+else if(smode=="pause")
+{
+document.getElementById("pause").disabled="disabled";
+document.getElementById("play").disabled="";
+document.getElementById("play").value="Resume";
+}
+else if(smode=="stop")
+{
+document.getElementById("play").disabled="";
+document.getElementById("play").value="Play";
+document.getElementById("pause").disabled="disabled";
+document.getElementById("stop").disabled="disabled";
+document.getElementById("slideshow").src=imgsrc[0];
+i=0;
+}
+if(i==imgsrc.length)
+{
+i=0;
+}
+}
+</script>
+</head>
+<body background="Images/426605-parchment.jpg">
+<p align="center">
+<img id="slideshow" src="Images/flg_us.gif" />
+&nbsp;<br />
+<input id="play" type="button" value="Play" onclick="mode('play');startSlideshow();" />
+<input id="pause" type="button" value="Pause" disabled="disabled" 
+onclick="mode('pause');startSlideshow();" />
+<input id="stop" type="button" value="Stop" disabled="disabled" 
+onclick="mode('stop');startSlideshow();" />
+</p>
+<p align="center"><font face="Verdana">Hit &quot;Play&quot; for slideshow<br>
+Hit &quot;Pause&quot; to look at each slide<br>
+Hit &quot;Stop&quot; to, you guessed it - Stop</font></p>
+<p align="center"><font face="Verdana">Right click on photo at &quot;Pause&quot; to Copy, 
+Select, or Print</font></p>
+<p align="center"><font face="Verdana">Photographs with special thanks to Julie Carter 
+Photography<br>
+Troy, IL</font></p>
+</body>
+
+<!-- Mirrored from www.collinsvillepost365.com/Slideshow.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Feb 2026 15:16:47 GMT -->
+</html>
