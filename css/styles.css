@@ -1,0 +1,385 @@
+/* ==========================================================================
+   SITE-WIDE STYLESHEET
+   ==========================================================================
+   Author:      Grok (assisted cleanup)
+   Purpose:     Consistent styling for American Legion Post 365 website
+   Last updated: February 2026
+   ========================================================================== */
+
+/* ==========================================================================
+   1. GLOBAL RESETS & BASE STYLES
+   ========================================================================== */
+* {
+  box-sizing: border-box; /* Prevent padding/border from increasing width */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh; /* Ensure full viewport height */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body {
+  /* Full-screen patriotic background */
+  background-image: url("/Images/flags.jpg"); /* Use relative path (no leading /) */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; /* Keeps background stationary on scroll */
+  background-color: #f5f5dc; /* Beige fallback color */
+
+  font-family: Verdana, Geneva, sans-serif;
+  color: #333;
+  line-height: 1.5; /* Improved readability */
+  display: flex;
+  flex-direction: column; /* Enables footer push-to-bottom */
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY & SHARED UTILITIES
+   ========================================================================== */
+.text-center {
+  text-align: center;
+}
+.vertical-middle {
+  vertical-align: middle;
+}
+
+.font-extra-large {
+  font-size: 2rem;
+}
+.font-large {
+  font-size: 1.4rem;
+}
+.font-medium {
+  font-size: 1.1rem;
+}
+.font-small {
+  font-size: 0.875rem;
+}
+
+.color-dark-red {
+  color: #990000;
+}
+
+/* ==========================================================================
+   3. SITE HEADER (Top logo + title banner)
+   ========================================================================== */
+.site-header {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ddd;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.site-logo {
+  max-height: 80px; /* Adjust as needed (60–100px range works well) */
+  width: auto;
+  display: block;
+}
+
+.logo-link {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.logo-link:hover {
+  transform: scale(1.05);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   4. CONTENT CARDS & SECTION CONTAINERS
+   ========================================================================== */
+.content-card,
+.hours-section,
+.main-menu-section,
+.flags-banner {
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 900px; /* Increased from 800px to better fit tables/images */
+  width: 100%;
+}
+
+/* Image/table-heavy cards hug content size */
+.flags-banner,
+.main-menu-section {
+  width: fit-content;
+  padding: 1rem;
+}
+
+/* ==========================================================================
+   5. TABLES (Hours, Menu, Officers, Committees, etc.)
+   ========================================================================== */
+.hours-table,
+.main-menu-section table,
+.officers-table,
+.quick-links-table,
+.centered-table,
+.commanders-table {
+  width: 100%;
+  max-width: 900px;
+  margin: 1rem auto;
+  border-collapse: collapse;
+}
+
+.hours-table th,
+.hours-table td,
+.main-menu-section td.menu-cell,
+.officers-table td,
+.quick-links-table td,
+.centered-table td,
+.commanders-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.hours-table th,
+.officers-table td:first-child {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+/* Standard menu cell (used site-wide) */
+.menu-cell {
+  width: 50%;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid #000;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.menu-cell:hover {
+  background-color: rgba(240, 240, 255, 0.95);
+}
+
+/* ==========================================================================
+   6. IMAGES & MEDIA
+   ========================================================================== */
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.banner-image,
+.menu-image,
+.calendar-img,
+.gallery-image,
+.sal-display {
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* subtle lift */
+}
+
+/* Image gallery (used on monument, Curly, SAL images, etc.) */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-image + figcaption {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   7. NEWS TICKER (Vertical scrolling)
+   ========================================================================== */
+.news-ticker {
+  width: 100%;
+  max-width: 800px;
+  height: 350px;
+  min-height: 350px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #000000;
+  margin: 2rem auto;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  position: relative;
+}
+
+.ticker-wrapper {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ticker-content {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  white-space: normal;
+  line-height: 1.6;
+  animation: ticker-scroll-vertical 60s linear infinite;
+  padding: 0 1rem 2rem 1rem;
+  min-height: 200%;
+}
+
+.ticker-content:hover,
+.ticker-content:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-content {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   8. CONTACT & LINK STYLES
+   ========================================================================== */
+.contact-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 1.5rem auto;
+  max-width: fit-content;
+}
+
+.fb-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #1877f2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.fb-contact:hover {
+  color: #0e5a9e;
+  text-decoration: underline;
+}
+
+.fb-contact img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   9. PAGE-SPECIFIC HELPERS
+   ========================================================================== */
+.calendar-content {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1100px; /* Wider for large calendar images */
+  width: 100%;
+}
+
+.calendar-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.calendar-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+}
+
+/* ==========================================================================
+   10. SITE FOOTER (Bottom navigation)
+   ========================================================================== */
+.site-footer {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  padding: 1.5rem;
+  margin-top: auto; /* Pushes to bottom with flex */
+  text-align: center;
+  border-top: 1px solid #ddd;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-link {
+  color: #1877f2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   11. MEDIA QUERIES (Responsive Adjustments)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .content-card {
+    padding: 1rem;
+  }
+
+  .image-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .site-logo {
+    max-height: 60px;
+  }
+
+  .calendar-images {
+    gap: 1.5rem;
+  }
+}

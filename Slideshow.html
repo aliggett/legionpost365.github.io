@@ -1,91 +1,218 @@
-<html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monument Slide Show - Leighton Evatt American Legion Post 365</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      /* Minimal inline styles for slideshow – can move to styles.css later */
+      .slideshow-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto 2rem;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
 
-<!-- Mirrored from www.collinsvillepost365.com/Slideshow.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Feb 2026 15:14:41 GMT -->
-<head>
-<title>Post 365 Monument Slide Show</title>
-<script type="text/javascript">
-var i = 0, imgsrc = new Array(), preload = new Array();
-imgsrc[0]="Memorial/Carter/Copy%20of%20600_7016.jpg";
-imgsrc[1]="Memorial/Carter/Copy%20of%20600_7018.jpg";
-imgsrc[2]="Memorial/Carter/Copy%20of%20600_7022.jpg";
-imgsrc[3]="Memorial/Carter/Copy%20of%20600_7031.jpg";
-imgsrc[4]="Memorial/Carter/Copy%20of%20600_7033.jpg";
-imgsrc[5] = "Memorial/Carter/Copy%20of%20600_7039.jpg";
-imgsrc[6] = "Memorial/Carter/Copy%20of%20600_7047.jpg";
-imgsrc[7] = "Memorial/Carter/Copy%20of%20600_7050.jpg";
-imgsrc[8] = "Memorial/Carter/Copy%20of%20600_7059.jpg";
-imgsrc[9] = "Memorial/Carter/Copy%20of%20600_7060.jpg";
-imgsrc[10] = "Memorial/Carter/Copy%20of%20600_7063.jpg";
-imgsrc[11] = "Memorial/Carter/Copy%20of%20600_7065.jpg";
-imgsrc[12] = "Memorial/Carter/Copy%20of%20600_7072.jpg";
-imgsrc[13] = "Memorial/Carter/Copy%20of%20600_7077.jpg";
-imgsrc[14] = "Memorial/Carter/Copy%20of%20600_7088.jpg";
-imgsrc[15] = "Memorial/Carter/Copy%20of%20600_7089.jpg";
-imgsrc[16] = "Memorial/Carter/Copy%20of%20600_7131.jpg";
-imgsrc[17] = "Memorial/Carter/Copy%20of%20600_7145.jpg";
-imgsrc[18] = "Memorial/Carter/Copy%20of%20600_7155.jpg";
-imgsrc[19] = "Memorial/Carter/Copy%20of%20600_7177.jpg";
-for (var j=0;j<imgsrc.length;j++)
-{
-preload[j] = new Image;
-preload[j].src = imgsrc[j];
-}
-function mode(param)
-{
-smode=param;
-}
-function startSlideshow()
-{
-if(smode=="play")
-{
-document.getElementById("play").disabled="disabled";
-document.getElementById("pause").disabled="";
-document.getElementById("stop").disabled="";
-document.getElementById("slideshow").src=imgsrc[i];
-i++;
-setTimeout("startSlideshow()",5000);
-}
-else if(smode=="pause")
-{
-document.getElementById("pause").disabled="disabled";
-document.getElementById("play").disabled="";
-document.getElementById("play").value="Resume";
-}
-else if(smode=="stop")
-{
-document.getElementById("play").disabled="";
-document.getElementById("play").value="Play";
-document.getElementById("pause").disabled="disabled";
-document.getElementById("stop").disabled="disabled";
-document.getElementById("slideshow").src=imgsrc[0];
-i=0;
-}
-if(i==imgsrc.length)
-{
-i=0;
-}
-}
-</script>
-</head>
-<body background="Images/426605-parchment.jpg">
-<p align="center">
-<img id="slideshow" src="Images/flg_us.gif" />
-&nbsp;<br />
-<input id="play" type="button" value="Play" onclick="mode('play');startSlideshow();" />
-<input id="pause" type="button" value="Pause" disabled="disabled" 
-onclick="mode('pause');startSlideshow();" />
-<input id="stop" type="button" value="Stop" disabled="disabled" 
-onclick="mode('stop');startSlideshow();" />
-</p>
-<p align="center"><font face="Verdana">Hit &quot;Play&quot; for slideshow<br>
-Hit &quot;Pause&quot; to look at each slide<br>
-Hit &quot;Stop&quot; to, you guessed it - Stop</font></p>
-<p align="center"><font face="Verdana">Right click on photo at &quot;Pause&quot; to Copy, 
-Select, or Print</font></p>
-<p align="center"><font face="Verdana">Photographs with special thanks to Julie Carter 
-Photography<br>
-Troy, IL</font></p>
-</body>
+      .slide {
+        display: none;
+        width: 100%;
+        height: auto;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
 
-<!-- Mirrored from www.collinsvillepost365.com/Slideshow.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Feb 2026 15:16:47 GMT -->
+      .slide.active {
+        display: block;
+        opacity: 1;
+      }
+
+      .slideshow-controls {
+        text-align: center;
+        margin: 1rem 0;
+      }
+
+      .slideshow-btn {
+        padding: 0.5rem 1.2rem;
+        margin: 0 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: #1877f2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+      }
+
+      .slideshow-btn:hover {
+        background-color: #0e5a9e;
+      }
+
+      .slideshow-btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Site Header (consistent across pages) -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="index.html" class="logo-link">
+          <img src="Images/post365logo.png" alt="Post 365 Logo - Return to Home" class="site-logo" />
+        </a>
+        <h1>Leighton Evatt American Legion Post 365</h1>
+      </div>
+    </header>
+
+    <main>
+      <!-- Address & Contact Section -->
+      <section class="content-card">
+        <h2>Leighton Evatt American Legion Post 365</h2>
+        <address>
+          1022 Vandalia Street
+          <br />
+          Collinsville, IL 62234
+          <br />
+          Phone: 618.345.2508
+        </address>
+        <img src="Images/Post1.jpg" alt="Post 365 Flag Display" class="banner-image" />
+        <div class="fb-contact">
+          <a href="https://www.facebook.com/legionpst365" target="_blank" rel="noopener noreferrer">
+            <img src="Images/facebook_logo.jpg" alt="Facebook Page" width="48" height="48" />
+            Contact us on Facebook
+          </a>
+        </div>
+      </section>
+
+      <!-- Monument Slide Show -->
+      <section class="content-card">
+        <h2>Monument Slide Show</h2>
+        <p class="text-center font-medium">Photographs with special thanks to Julie Carter Photography, Troy, IL</p>
+
+        <div class="slideshow-container">
+          <img
+            id="slideshow"
+            class="slide active"
+            src="Memorial/Carter/Copy%20of%20600_7016.jpg"
+            alt="Monument slide 1" />
+          <!-- All other images will be loaded dynamically via JS -->
+        </div>
+
+        <div class="slideshow-controls">
+          <button id="playBtn" class="slideshow-btn">Play</button>
+          <button id="pauseBtn" class="slideshow-btn" disabled>Pause</button>
+          <button id="stopBtn" class="slideshow-btn" disabled>Stop</button>
+        </div>
+
+        <p class="text-center font-small">
+          Click "Play" to start the slideshow (5 seconds per image)
+          <br />
+          Click "Pause" to stop and view a slide
+          <br />
+          Click "Stop" to reset to the first image
+          <br />
+          Right-click on a paused image to copy, save, or print
+        </p>
+      </section>
+
+      <!-- Military Branch Flags Banner -->
+      <section class="flags-banner content-card">
+        <img src="Images/Military_Branch_Flags.png" alt="Military Branch Flags" class="banner-image" />
+      </section>
+    </main>
+
+    <!-- Site Footer (consistent navigation) -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <a href="#top" class="footer-link">Back to Top ↑</a>
+        <a href="index.html" class="footer-link">Return to Home</a>
+      </div>
+      <p>&copy; 2026 Leighton Evatt American Legion Post 365</p>
+    </footer>
+
+    <!-- Minimal JavaScript for slideshow -->
+    <script>
+      const slides = [
+        "Memorial/Carter/Copy%20of%20600_7016.jpg",
+        "Memorial/Carter/Copy%20of%20600_7018.jpg",
+        "Memorial/Carter/Copy%20of%20600_7022.jpg",
+        "Memorial/Carter/Copy%20of%20600_7031.jpg",
+        "Memorial/Carter/Copy%20of%20600_7033.jpg",
+        "Memorial/Carter/Copy%20of%20600_7039.jpg",
+        "Memorial/Carter/Copy%20of%20600_7047.jpg",
+        "Memorial/Carter/Copy%20of%20600_7050.jpg",
+        "Memorial/Carter/Copy%20of%20600_7059.jpg",
+        "Memorial/Carter/Copy%20of%20600_7060.jpg",
+        "Memorial/Carter/Copy%20of%20600_7063.jpg",
+        "Memorial/Carter/Copy%20of%20600_7065.jpg",
+        "Memorial/Carter/Copy%20of%20600_7072.jpg",
+        "Memorial/Carter/Copy%20of%20600_7077.jpg",
+        "Memorial/Carter/Copy%20of%20600_7088.jpg",
+        "Memorial/Carter/Copy%20of%20600_7089.jpg",
+        "Memorial/Carter/Copy%20of%20600_7131.jpg",
+        "Memorial/Carter/Copy%20of%20600_7145.jpg",
+        "Memorial/Carter/Copy%20of%20600_7155.jpg",
+        "Memorial/Carter/Copy%20of%20600_7177.jpg",
+      ];
+
+      let currentSlide = 0;
+      let slideshowInterval = null;
+      const imgElement = document.getElementById("slideshow");
+      const playBtn = document.getElementById("playBtn");
+      const pauseBtn = document.getElementById("pauseBtn");
+      const stopBtn = document.getElementById("stopBtn");
+
+      function showSlide(index) {
+        imgElement.src = slides[index];
+        imgElement.alt = `Monument slide ${index + 1} of ${slides.length}`;
+      }
+
+      function startSlideshow() {
+        if (slideshowInterval) return;
+        playBtn.disabled = true;
+        pauseBtn.disabled = false;
+        stopBtn.disabled = false;
+        slideshowInterval = setInterval(() => {
+          currentSlide = (currentSlide + 1) % slides.length;
+          showSlide(currentSlide);
+        }, 5000); // 5 seconds per slide
+      }
+
+      function pauseSlideshow() {
+        if (slideshowInterval) {
+          clearInterval(slideshowInterval);
+          slideshowInterval = null;
+          playBtn.disabled = false;
+          pauseBtn.disabled = true;
+          playBtn.textContent = "Resume";
+        }
+      }
+
+      function stopSlideshow() {
+        if (slideshowInterval) {
+          clearInterval(slideshowInterval);
+          slideshowInterval = null;
+        }
+        currentSlide = 0;
+        showSlide(0);
+        playBtn.disabled = false;
+        pauseBtn.disabled = true;
+        stopBtn.disabled = true;
+        playBtn.textContent = "Play";
+      }
+
+      playBtn.addEventListener("click", startSlideshow);
+      pauseBtn.addEventListener("click", pauseSlideshow);
+      stopBtn.addEventListener("click", stopSlideshow);
+
+      // Preload first few images for smoother start
+      slides.slice(0, 5).forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    </script>
+  </body>
 </html>
