@@ -17,7 +17,7 @@ body {
 
 body {
   /* Full-screen patriotic background */
-  background-image: url("Images/flags.jpg"); /* Use relative path (no leading /) */
+  background-image: url("./Images/flags.jpg"); /* Use relative path (no leading /) */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
