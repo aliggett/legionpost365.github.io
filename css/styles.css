@@ -231,7 +231,7 @@ img {
 .news-ticker {
   width: 100%;
   max-width: 800px;
-  height: 350px;
+  height: 550px;
   min-height: 350px;
   overflow: hidden;
   background: #ffffff;
@@ -256,7 +256,7 @@ img {
   flex-direction: column;
   white-space: normal;
   line-height: 1.6;
-  animation: ticker-scroll-vertical 60s linear infinite;
+  animation: ticker-scroll-vertical 30s linear infinite;
   padding: 0 1rem 2rem 1rem;
   min-height: 200%;
 }
